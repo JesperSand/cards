@@ -3,6 +3,7 @@ package com.example.blackjack
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import layout.CardImages
 
 class MainActivity : AppCompatActivity() {
@@ -18,11 +19,32 @@ class MainActivity : AppCompatActivity() {
         lateinit var playerCard1: ImageView
         lateinit var dealerCard2: ImageView
         lateinit var playerCard2: ImageView
+        lateinit var playerscore: TextView
+        lateinit var dealerscore: TextView
 
         dealerCard1 = findViewById(R.id.DealerCard1)
         playerCard1 = findViewById(R.id.PlayerCard1)
         dealerCard2 = findViewById(R.id.DealerCard2)
         playerCard2 = findViewById(R.id.PlayerCard2)
+        dealerscore = findViewById(R.id.DealerScore)
+        playerscore = findViewById(R.id.PlayerScore)
+
+        // Ändra storleken på ImageView objekten
+        val newWidth = 250  // Ange önskad bredd här
+        val newHeight = 500 // Ange önskad höjd här
+
+        dealerCard1.layoutParams.width = newWidth
+        dealerCard1.layoutParams.height = newHeight
+
+        playerCard1.layoutParams.width = newWidth
+        playerCard1.layoutParams.height = newHeight
+
+        dealerCard2.layoutParams.width = newWidth
+        dealerCard2.layoutParams.height = newHeight
+
+        playerCard2.layoutParams.width = newWidth
+        playerCard2.layoutParams.height = newHeight
+
 
         val colors = listOf("hearts", "diamond", "clubs", "spades")
         val numbers = listOf(
