@@ -3,7 +3,7 @@ package layout
 import com.example.blackjack.Card
 import com.example.blackjack.R
 
-object CardImageMapper {
+class CardImages {
     val cardImages: Map<Card, Int> = mapOf(
         //Images for Hearts
         Card("hearts", "ace") to R.drawable.ace_of_hearts,
