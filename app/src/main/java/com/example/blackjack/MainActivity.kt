@@ -63,10 +63,6 @@ class MainActivity : AppCompatActivity() {
             "king"
         )
 
-
-
-
-
         for (color in colors) {
             for (value in numbers) {
                 val card = Card(color, value)
@@ -81,6 +77,12 @@ class MainActivity : AppCompatActivity() {
         playerCards.add(drawAndShowCard(playerCard1))
         dealerCards.add(drawAndShowCard(dealerCard2))
         playerCards.add(drawAndShowCard(playerCard2))
+
+        val dealerPoints = countPoints(dealerCards)
+        val playerPoints = countPoints(playerCards)
+
+        dealerscore.text = dealerPoints.toString()
+        playerscore.text = playerPoints.toString()
     }
 
     fun drawAndShowCard(imageView: ImageView): Card {
