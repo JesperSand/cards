@@ -1,7 +1,10 @@
 package com.example.blackjack
 
+
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import layout.CardImages
@@ -10,17 +13,19 @@ class MainActivity : AppCompatActivity() {
     val cards = mutableListOf<Card>()
     val dealerCards = mutableListOf<Card>()
     val playerCards = mutableListOf<Card>()
+
+    // Definiera dina ImageView objekt
+    lateinit var dealerCard1: ImageView
+    lateinit var playerCard1: ImageView
+    lateinit var dealerCard2: ImageView
+    lateinit var playerCard2: ImageView
+    lateinit var playerscore: TextView
+    lateinit var dealerscore: TextView
+    lateinit var standbutton: Button
+    lateinit var hitbutton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        // Definiera dina ImageView objekt
-        lateinit var dealerCard1: ImageView
-        lateinit var playerCard1: ImageView
-        lateinit var dealerCard2: ImageView
-        lateinit var playerCard2: ImageView
-        lateinit var playerscore: TextView
-        lateinit var dealerscore: TextView
 
         dealerCard1 = findViewById(R.id.DealerCard1)
         playerCard1 = findViewById(R.id.PlayerCard1)
@@ -83,6 +88,7 @@ class MainActivity : AppCompatActivity() {
 
         dealerscore.text = dealerPoints.toString()
         playerscore.text = playerPoints.toString()
+        determineWinner()
     }
 
     fun drawAndShowCard(imageView: ImageView): Card {
@@ -119,14 +125,41 @@ class MainActivity : AppCompatActivity() {
     fun determineWinner() {
         val playerPoints = countPoints(playerCards)
         val dealerPoints = countPoints(dealerCards)
+        val builder = AlertDialog.Builder(this@MainActivity)
+        builder.setTitle("Spelet är slut!")
 
         when {
-            playerPoints > 21 -> println("Dealern vinner!")
-            dealerPoints > 21 -> println("Spelaren vinner!")
-            playerPoints > dealerPoints -> println("Spelaren vinner!")
-            dealerPoints > playerPoints -> println("Dealern vinner!")
-            else -> println("Det är oavgjort!")
+            playerPoints > 21 -> builder.setMessage("Dealern vinner!")
+            dealerPoints > 21 -> builder.setMessage("Spelaren vinner!")
+            playerPoints > dealerPoints -> builder.setMessage("Spelaren vinner!")
+            dealerPoints > playerPoints -> builder.setMessage("Dealern vinner!")
+            else -> builder.setMessage("Det är oavgjort!")
         }
+        builder.setPositiveButton("Spela igen") { dialog, which ->
+            restartGame()
+        }
+        builder.setNegativeButton("Avsluta") { dialog, which ->
+            finish()
+        }
+        builder.show()
+    }
+    fun restartGame() {
+        dealerCards.clear()
+        playerCards.clear()
+        cards.shuffle()
+
+        // Dela ut de första korten
+        dealerCards.add(drawAndShowCard(dealerCard1))
+        playerCards.add(drawAndShowCard(playerCard1))
+        dealerCards.add(drawAndShowCard(dealerCard2))
+        playerCards.add(drawAndShowCard(playerCard2))
+
+        val dealerPoints = countPoints(dealerCards)
+        val playerPoints = countPoints(playerCards)
+
+        dealerscore.text = dealerPoints.toString()
+        playerscore.text = playerPoints.toString()
+        determineWinner()
     }
 
 }
