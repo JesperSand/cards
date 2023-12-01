@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         playerCard2 = findViewById(R.id.PlayerCard2)
         dealerscore = findViewById(R.id.DealerScore)
         playerscore = findViewById(R.id.PlayerScore)
+        standbutton = findViewById(R.id.StandButton)
 
         // Ändra storleken på ImageView objekten
         val newWidth = 250  // Ange önskad bredd här
@@ -88,7 +89,9 @@ class MainActivity : AppCompatActivity() {
 
         dealerscore.text = dealerPoints.toString()
         playerscore.text = playerPoints.toString()
-        determineWinner()
+        standbutton.setOnClickListener {
+            determineWinner()
+        }
     }
 
     fun drawAndShowCard(imageView: ImageView): Card {
@@ -98,6 +101,14 @@ class MainActivity : AppCompatActivity() {
         imageView.setImageResource(
             cardImageResource ?: R.drawable.error // Fortfarande behöver du ha en error bild i din drawable mapp
         )
+
+        if (imageView == playerCard1 || imageView == playerCard2) {
+            val playerPoints = countPoints(playerCards)
+            if (playerPoints > 21) {
+                determineWinner()
+            }
+        }
+
         return drawnCard
     }
 
@@ -159,7 +170,9 @@ class MainActivity : AppCompatActivity() {
 
         dealerscore.text = dealerPoints.toString()
         playerscore.text = playerPoints.toString()
-        determineWinner()
+        standbutton.setOnClickListener {
+            determineWinner()
+        }
     }
 
 }
