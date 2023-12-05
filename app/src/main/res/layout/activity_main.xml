@@ -32,26 +32,6 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/PlayerCard1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginBottom="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/StandButton"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/PlayerCard2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/HitButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
         android:id="@+id/DealerCard1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,12 +55,12 @@
         android:id="@+id/PlayerScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="120dp"
         android:text="PlayerScore"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/PlayerCard2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DealerScore" />
 
     <TextView
         android:id="@+id/DealerScore"
@@ -92,5 +72,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/DealerCard1" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="390dp"
+        android:layout_height="196dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/StandButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PlayerScore">
+
+        <ImageView
+            android:id="@+id/PlayerCard1"
+            android:layout_width="wrap_content"
+            android:layout_height="155dp"
+            android:layout_weight="1"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/Playercard3"
+            android:layout_width="wrap_content"
+            android:layout_height="155dp"
+            android:layout_weight="1"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/PlayerCard2"
+            android:layout_width="wrap_content"
+            android:layout_height="153dp"
+            android:layout_weight="1"
+            tools:srcCompat="@tools:sample/avatars" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
