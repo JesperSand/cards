@@ -13,6 +13,7 @@
         android:layout_marginTop="130dp"
         android:text="BLACKJACK"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,6 +25,7 @@
         android:layout_marginTop="100dp"
         android:backgroundTint="@color/black"
         android:text="Play"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Titelview" />
@@ -35,6 +37,7 @@
         android:layout_marginTop="70dp"
         android:backgroundTint="@color/black"
         android:text="How To Play"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PlayButton" />
@@ -46,6 +49,7 @@
         android:layout_marginTop="70dp"
         android:backgroundTint="@color/black"
         android:text="Quit"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RuleButton" />
