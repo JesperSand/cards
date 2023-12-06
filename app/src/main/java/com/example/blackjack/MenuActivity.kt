@@ -17,7 +17,7 @@ class MenuActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
-            // Koden här kommer att köras när knappen klickas på.
+
         }
     }
 

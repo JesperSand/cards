@@ -2,6 +2,7 @@ package com.example.blackjack
 
 
 import android.app.AlertDialog
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var dealerCard2: ImageView
     lateinit var playerCard2: ImageView
     lateinit var playerCard3: ImageView
+    lateinit var dealercard3: ImageView
     lateinit var playerscore: TextView
     lateinit var dealerscore: TextView
     lateinit var standbutton: Button
@@ -30,11 +32,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        dealerCard1 = findViewById(R.id.DealerCard1)
+        dealerCard1 = findViewById(R.id.DealerCards1)
         playerCard1 = findViewById(R.id.PlayerCard1)
-        dealerCard2 = findViewById(R.id.DealerCard2)
+        dealerCard2 = findViewById(R.id.DealerCards2)
         playerCard2 = findViewById(R.id.PlayerCard2)
         playerCard3 = findViewById(R.id.Playercard3)
+        dealercard3 = findViewById(R.id.DealerCards3)
         dealerscore = findViewById(R.id.DealerScore)
         playerscore = findViewById(R.id.PlayerScore)
         standbutton = findViewById(R.id.StandButton)
@@ -58,6 +61,9 @@ class MainActivity : AppCompatActivity() {
 
         playerCard3.layoutParams.width = newWidth
         playerCard3.layoutParams.height = newHeight
+
+        dealercard3.layoutParams.width = newWidth
+        dealercard3.layoutParams.height = newHeight
 
 
         val colors = listOf("hearts", "diamond", "clubs", "spades")
@@ -93,6 +99,7 @@ class MainActivity : AppCompatActivity() {
         playerCards.add(drawAndShowCard(playerCard2))
 
         playerCard3.visibility = View.GONE // Göm det tredje kortet från början
+        dealercard3.visibility = View.GONE // Göm det tredje kortet från början
 
         val dealerPoints = countPoints(dealerCards)
         val playerPoints = countPoints(playerCards)
@@ -244,4 +251,3 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-
