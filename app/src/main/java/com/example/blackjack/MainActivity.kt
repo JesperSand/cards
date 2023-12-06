@@ -44,10 +44,11 @@ class MainActivity : AppCompatActivity() {
         standbutton = findViewById(R.id.StandButton)
         hitbutton = findViewById(R.id.HitButton)
 
-        // Ändra storleken på ImageView objekten
-        val newWidth = 250  // Ange önskad bredd här
-        val newHeight = 500 // Ange önskad höjd här
+        // Changes the size of images
+        val newWidth = 250
+        val newHeight = 500
 
+        //applies the new size
         dealerCard1.layoutParams.width = newWidth
         dealerCard1.layoutParams.height = newHeight
 
@@ -66,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         dealercard3.layoutParams.width = newWidth
         dealercard3.layoutParams.height = newHeight
 
-
+        //variables for all the suits and numbers possible for a playing card
         val colors = listOf("hearts", "diamond", "clubs", "spades")
         val numbers = listOf(
             "ace",
@@ -83,34 +84,36 @@ class MainActivity : AppCompatActivity() {
             "queen",
             "king"
         )
-
+        //Creates a card and adds it to a list
         for (color in colors) {
             for (value in numbers) {
                 val card = Card(color, value)
-                cards.add(card) // Lägg till kortet i listan
+                cards.add(card)
             }
         }
 
-        cards.shuffle() // Blanda kortleken
+        //Shuffles the card
+        cards.shuffle()
 
-        // Dela ut de första korten
+        //Deals the first 4 cards
         dealerCards.add(drawAndShowCard(dealerCard1))
         playerCards.add(drawAndShowCard(playerCard1))
         dealerCards.add(drawAndShowCard(dealerCard2))
         playerCards.add(drawAndShowCard(playerCard2))
+        //Hides the 3rd card for dealer and player
+        playerCard3.visibility = View.GONE
+        dealercard3.visibility = View.GONE
 
-        playerCard3.visibility = View.GONE // Göm det tredje kortet från början
-        dealercard3.visibility = View.GONE // Göm det tredje kortet från början
 
         val dealerPoints = countPoints(dealerCards)
         val playerPoints = countPoints(playerCards)
 
-
+        //Hit Button
         hitbutton.setOnClickListener {
             playerCards.add(drawAndShowCard(playerCard3))
             val playerPoints = countPoints(playerCards)
             playerscore.text = playerPoints.toString()
-
+            //writes out blackjack if you get 21 points
             if (playerPoints == 21) {
                 AlertDialog.Builder(this)
                     .setTitle("Blackjack!")
@@ -122,7 +125,9 @@ class MainActivity : AppCompatActivity() {
                         finish()
                     }
                     .show()
-            } else if (playerPoints > 21) {
+            }
+            //writes out bust if you go over 21 points
+            else if (playerPoints > 21) {
                 AlertDialog.Builder(this)
                     .setTitle("BUST!")
                     .setMessage("You went over 21, try again")
@@ -135,9 +140,10 @@ class MainActivity : AppCompatActivity() {
                     .show()
             }
         }
-
+        //Updates the score according to the value of the cards
         dealerscore.text = dealerPoints.toString()
         playerscore.text = playerPoints.toString()
+        //stand Button
         standbutton.setOnClickListener {
             while (countPoints(dealerCards) < 17) {
                 dealerCards.add(drawAndShowCard(dealercard3))
@@ -147,14 +153,15 @@ class MainActivity : AppCompatActivity() {
             determineWinner()
         }
     }
-
+    //Function for drawing and displayin images
     fun drawAndShowCard(imageView: ImageView): Card {
-        val cardImagesInstance = CardImages() // Skapar en instans av CardImages
-        val drawnCard = cards.removeAt(0) // Använder cards listan istället för Card
-        val cardImageResource = cardImagesInstance.cardImages[drawnCard] // Använder instansen cardImagesInstance istället för CardImages
+        val cardImagesInstance = CardImages()
+        val drawnCard = cards.removeAt(0)
+        val cardImageResource = cardImagesInstance.cardImages[drawnCard]
         imageView.setImageResource(
-            cardImageResource ?: R.drawable.error // Fortfarande behöver du ha en error bild i din drawable mapp
+            cardImageResource ?: R.drawable.error
         )
+        //Showes the hidden card
         imageView.visibility = View.VISIBLE
 
         if (imageView == playerCard1 || imageView == playerCard2) {
@@ -166,7 +173,7 @@ class MainActivity : AppCompatActivity() {
 
         return drawnCard
     }
-
+    //Function to count ponts
     fun countPoints(cards: List<Card>): Int {
         var points = 0
 
@@ -187,7 +194,7 @@ class MainActivity : AppCompatActivity() {
         }
         return points
     }
-
+    //Function that checks winner and displays a message accordingly
     fun determineWinner() {
         val playerPoints = countPoints(playerCards)
         val dealerPoints = countPoints(dealerCards)
@@ -209,6 +216,7 @@ class MainActivity : AppCompatActivity() {
         }
         builder.show()
     }
+    //Function for resetting the came and running it again
     fun restartGame() {
         dealerCards.clear()
         playerCards.clear()
