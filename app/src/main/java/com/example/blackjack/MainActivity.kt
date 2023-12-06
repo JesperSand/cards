@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     val dealerCards = mutableListOf<Card>()
     val playerCards = mutableListOf<Card>()
 
-
     // Defines all objects
     lateinit var dealerCard1: ImageView
     lateinit var playerCard1: ImageView
@@ -29,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var dealerscore: TextView
     lateinit var standbutton: Button
     lateinit var hitbutton: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -91,7 +91,6 @@ class MainActivity : AppCompatActivity() {
                 cards.add(card)
             }
         }
-
         //Shuffles the card
         cards.shuffle()
 
@@ -103,7 +102,6 @@ class MainActivity : AppCompatActivity() {
         //Hides the 3rd card for dealer and player
         playerCard3.visibility = View.GONE
         dealercard3.visibility = View.GONE
-
 
         val dealerPoints = countPoints(dealerCards)
         val playerPoints = countPoints(playerCards)
@@ -163,20 +161,17 @@ class MainActivity : AppCompatActivity() {
         )
         //Showes the hidden card
         imageView.visibility = View.VISIBLE
-
         if (imageView == playerCard1 || imageView == playerCard2) {
             val playerPoints = countPoints(playerCards)
             if (playerPoints > 21) {
                 determineWinner()
             }
         }
-
         return drawnCard
     }
     //Function to count ponts
     fun countPoints(cards: List<Card>): Int {
         var points = 0
-
         for (card in cards) {
             points += when (card.value) {
                 "ace" -> 11
@@ -200,7 +195,6 @@ class MainActivity : AppCompatActivity() {
         val dealerPoints = countPoints(dealerCards)
         val builder = AlertDialog.Builder(this@MainActivity)
         builder.setTitle("Game over!")
-
         when {
             playerPoints > 21 -> builder.setMessage("The dealer won!")
             dealerPoints > 21 -> builder.setMessage("You won!")
@@ -222,14 +216,12 @@ class MainActivity : AppCompatActivity() {
         playerCards.clear()
         cards.shuffle()
 
-
         dealerCards.add(drawAndShowCard(dealerCard1))
         playerCards.add(drawAndShowCard(playerCard1))
         dealerCards.add(drawAndShowCard(dealerCard2))
         playerCards.add(drawAndShowCard(playerCard2))
         playerCard3.visibility = View.GONE
         dealercard3.visibility = View.GONE
-
 
         val dealerPoints = countPoints(dealerCards)
         val playerPoints = countPoints(playerCards)
@@ -257,10 +249,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 .show()
         }
-
         dealerscore.text = dealerPoints.toString()
         playerscore.text = playerPoints.toString()
-
         standbutton.setOnClickListener {
             while (countPoints(dealerCards) < 17) {
                 dealerCards.add(drawAndShowCard(dealercard3))
