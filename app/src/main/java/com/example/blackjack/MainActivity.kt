@@ -12,12 +12,13 @@ import android.widget.TextView
 import layout.CardImages
 
 class MainActivity : AppCompatActivity() {
+    //emptly lists
     val cards = mutableListOf<Card>()
     val dealerCards = mutableListOf<Card>()
     val playerCards = mutableListOf<Card>()
 
 
-    // Definiera dina ImageView objekt
+    // Defines all objects
     lateinit var dealerCard1: ImageView
     lateinit var playerCard1: ImageView
     lateinit var dealerCard2: ImageView
@@ -138,6 +139,11 @@ class MainActivity : AppCompatActivity() {
         dealerscore.text = dealerPoints.toString()
         playerscore.text = playerPoints.toString()
         standbutton.setOnClickListener {
+            while (countPoints(dealerCards) < 17) {
+                dealerCards.add(drawAndShowCard(dealercard3))
+                val dealerPoints = countPoints(dealerCards) // Uppdatera dealerPoints här
+                dealerscore.text = dealerPoints.toString()
+            }
             determineWinner()
         }
     }
@@ -214,6 +220,8 @@ class MainActivity : AppCompatActivity() {
         dealerCards.add(drawAndShowCard(dealerCard2))
         playerCards.add(drawAndShowCard(playerCard2))
         playerCard3.visibility = View.GONE // För att gömma ImageView
+        dealercard3.visibility = View.GONE // Göm det tredje kortet från början
+
 
         val dealerPoints = countPoints(dealerCards)
         val playerPoints = countPoints(playerCards)
@@ -246,6 +254,11 @@ class MainActivity : AppCompatActivity() {
         playerscore.text = playerPoints.toString()
 
         standbutton.setOnClickListener {
+            while (countPoints(dealerCards) < 17) {
+                dealerCards.add(drawAndShowCard(dealercard3))
+                val dealerPoints = countPoints(dealerCards) // Uppdatera dealerPoints här
+                dealerscore.text = dealerPoints.toString()
+            }
             determineWinner()
         }
     }
