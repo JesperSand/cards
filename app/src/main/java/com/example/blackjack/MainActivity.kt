@@ -147,7 +147,7 @@ class MainActivity : AppCompatActivity() {
         standbutton.setOnClickListener {
             while (countPoints(dealerCards) < 17) {
                 dealerCards.add(drawAndShowCard(dealercard3))
-                val dealerPoints = countPoints(dealerCards) // Uppdatera dealerPoints här
+                val dealerPoints = countPoints(dealerCards)
                 dealerscore.text = dealerPoints.toString()
             }
             determineWinner()
@@ -222,13 +222,13 @@ class MainActivity : AppCompatActivity() {
         playerCards.clear()
         cards.shuffle()
 
-        // Dela ut de första korten
+
         dealerCards.add(drawAndShowCard(dealerCard1))
         playerCards.add(drawAndShowCard(playerCard1))
         dealerCards.add(drawAndShowCard(dealerCard2))
         playerCards.add(drawAndShowCard(playerCard2))
-        playerCard3.visibility = View.GONE // För att gömma ImageView
-        dealercard3.visibility = View.GONE // Göm det tredje kortet från början
+        playerCard3.visibility = View.GONE
+        dealercard3.visibility = View.GONE
 
 
         val dealerPoints = countPoints(dealerCards)
@@ -264,7 +264,7 @@ class MainActivity : AppCompatActivity() {
         standbutton.setOnClickListener {
             while (countPoints(dealerCards) < 17) {
                 dealerCards.add(drawAndShowCard(dealercard3))
-                val dealerPoints = countPoints(dealerCards) // Uppdatera dealerPoints här
+                val dealerPoints = countPoints(dealerCards)
                 dealerscore.text = dealerPoints.toString()
             }
             determineWinner()
